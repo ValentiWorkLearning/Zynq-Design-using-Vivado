@@ -166,14 +166,14 @@ Note:  Since we do not have any hardware in Programmable Logic (PL) there is no 
 1.	Create a new platform from hardware(XSA). For this, click to  **Browse** and select the corresponding XSA file which was generated from the **Export Hardware** step. Set platform name to **lab1_zynq_wrapper**
 
 <p align="center">
-    <img src ="./pics/lab 1/vitis/2CreateNewHardwarePlatformFromXsa.JPG" width="40%" height="80%"/>
+    <img src ="./pics/lab 1/vitis/2CreateNewHardwarePlatformFromXsa.jpg" width="40%" height="80%"/>
     </p>
     <p align = "center">
     <i> Create new hardware platform from XSA window </i>
 </p>
 
 <p align="center">
-    <img src ="./pics/lab 1/vitis/3SelectCorresponingXSA.JPG" width="40%" height="80%"/>
+    <img src ="./pics/lab 1/vitis/3SelectCorresponingXSA.jpg" width="40%" height="80%"/>
     </p>
     <p align = "center">
     <i> Select corresponding XSA file </i>
@@ -182,7 +182,7 @@ Note:  Since we do not have any hardware in Programmable Logic (PL) there is no 
 
 1.	In SDK, select **File > New > Application Project**
 <p align="center">
-    <img src ="./pics/lab 1/vitis/4CreateApplicationProject.JPG" width="40%" height="80%"/>
+    <img src ="./pics/lab 1/vitis/4CreateApplicationProject.jpg" width="40%" height="80%"/>
     </p>
     <p align = "center">
     <i> Create new Application Project </i>
@@ -190,7 +190,7 @@ Note:  Since we do not have any hardware in Programmable Logic (PL) there is no 
 
 1.	Select the corresponding platform for the system
 <p align="center">
-    <img src ="./pics/lab 1/vitis/5SelectTheProperHw.JPG" width="40%" height="80%"/>
+    <img src ="./pics/lab 1/vitis/5SelectTheProperHw.jpg" width="40%" height="80%"/>
     </p>
     <p align = "center">
     <i>Select the corresponding platform </i>
@@ -198,7 +198,7 @@ Note:  Since we do not have any hardware in Programmable Logic (PL) there is no 
 
 1.	Set project name to **mem_test_app**
 <p align="center">
-    <img src ="./pics/lab 1/vitis/6SelectTheProperProjectName.JPG" width="40%" height="80%"/>
+    <img src ="./pics/lab 1/vitis/6SelectTheProperProjectName.jpg" width="40%" height="80%"/>
     </p>
     <p align = "center">
     <i>Set project name to mem_test_app </i>
@@ -206,7 +206,7 @@ Note:  Since we do not have any hardware in Programmable Logic (PL) there is no 
 
 1.	Leave domain name as is
 <p align="center">
-    <img src ="./pics/lab 1/vitis/7LeaveDomainAsIs.JPG" width="40%" height="80%"/>
+    <img src ="./pics/lab 1/vitis/7LeaveDomainAsIs.jpg" width="40%" height="80%"/>
     </p>
     <p align = "center">
     <i>Domain name settings </i>
@@ -214,7 +214,7 @@ Note:  Since we do not have any hardware in Programmable Logic (PL) there is no 
 
 1.	Select **Memory Tests** from the Available Templates window, and click Finish.
 <p align="center">
-    <img src ="./pics/lab 1/vitis/8SelectMemoryTests.JPG" width="40%" height="80%"/>
+    <img src ="./pics/lab 1/vitis/8SelectMemoryTests.jpg" width="40%" height="80%"/>
     </p>
     <p align = "center">
     <i> Select Memory Tests </i>
