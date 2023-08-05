@@ -27,7 +27,7 @@ This will create the lab2 directory and save the project and associated director
 7.	Notice the additional *M_AXI_GPO* interface, and *M_AXI_GPO_ACLK*, *FCLK_CLK0*, and *FCLK_RESET0_N* ports are now included on the Zynq block. You can click the regenerate button to redraw the diagram to get something like this:
 
 <p align="center">
-<img src ="./pics/lab 2/1BlockAXI.JPG " width="40%" height="80%"/>
+<img src ="./pics/lab 2/1BlockAXI.JPG " width="80%" height="80%"/>
 </p>
 <p align = "center">
 <i>Zynq system with AXI and clock interfaces</i>
@@ -40,7 +40,7 @@ This will create the lab2 directory and save the project and associated director
 10.	Click on the AXI GPIO block to select it, and in the properties tab, change the name to **onboard_leds**
 
    <p align="center">
-   <img src ="./pics/lab 2/2AXIblockadd.JPG "  width="50%" height="80%"/>
+   <img src ="./pics/lab 2/2AXIblockadd.JPG "  width="80%" height="80%"/>
    </p>
    <p align = "center">
    <i>Change AXI GPIO default name</i>
@@ -88,32 +88,33 @@ Notice that the peripheral can be configured for two channels, but, since we wan
 19.	Double click on the IP block, select the _btns GPIO interface_. Open IP Configuration and set GPIO Width to *4*
 
 <p align="center">
-    <img src ="./pics/lab 2/3_2_gpio_width_change.jpg "  width="60%" height="80%"/>
+    <img src ="./pics/lab 2/3_2_gpio_width_change.jpg "  width="80%" height="80%"/>
 </p>
 <p align = "center">
 <i>Adjust gpio width</i>
 </p>
 
 At this point connection automation could be run, or the block could be connected manually. This time the block will be connected manually.
-20.	Double click on the _AXI Interconnect_ (name : ps7_0_axi_periph) and change the Number of **Master Interfaces** to 2 and click OK
+20.	Double click on the _AXI Interconnect_ (name : ps7_0_axi_periph) and change the Number of **Master Interfaces** to 2 and click OK.
 
-    <p align="center">
+
+<p align="center">
     <img src ="./pics/lab 2/4AXIrecust.JPG "  width="60%" height="80%"/>
     </p>
     <p align = "center">
     <i>Add master port to AXI Interconnect</i>
-    </p>
+</p>
 
 21.	Click on the s_axi port of the buttons AXI GPIO block (name: buttons), and drag the pointer towards the AXI Interconnect block.
 
       The message 'Found 1 interface' should appear, and a green tick should appear beside the M01_AXI port on the AXI Interconnect indicating this is a valid port to connect to. Drag the pointer to this port and release the mouse button to make the connection.
 
-          <p align="center">
-    <img src ="./pics/lab 2/4AXI_found_1_interface.JPG "  width="60%" height="80%"/>
-    </p>
-    <p align = "center">
+<p align="center">
+    <img src ="./pics/lab 2/4AXI_found_1_interface.JPG "  width="80%" height="80%"/>
+</p>
+<p align = "center">
     <i>AXI Found 1 interface</i>
-    </p>
+</p>
 
 22.	In a similar way, connect the following ports:
 
@@ -204,14 +205,14 @@ In a case when pins are not assigned automatically - it's necessary to create an
 
 1. Create the new XDC file:
    <p align="center">
-   <img src ="./pics/lab 2/constraints/1AddNewConstraints.jpg"  width="30%" height="80%"/>
+   <img src ="./pics/lab 2/constraints/1AddNewConstraints.jpg"  width="80%" height="80%"/>
    </p>
    <p align = "center">
    <i>Create new constraints file</i>
    </p>
 
     <p align="center">
-   <img src ="./pics/lab 2/constraints/2CreateNewFile.jpg"  width="30%" height="80%"/>
+   <img src ="./pics/lab 2/constraints/2CreateNewFile.jpg"  width="80%" height="80%"/>
    </p>
    <p align = "center">
    <i>Change title to the corresponding board</i>
@@ -231,7 +232,7 @@ set_property -dict { PACKAGE_PIN P19   IOSTANDARD LVCMOS33 } [get_ports { button
 ```
 The result appearance should be like this:
 <p align="center">
-   <img src ="./pics/lab 2/constraints/3ResultContent.jpg"  width="30%" height="80%"/>
+   <img src ="./pics/lab 2/constraints/3ResultContent.jpg"  width="100%" height="100%"/>
 </p>
 <p align = "center">
 <i>Result content</i>
@@ -242,7 +243,7 @@ https://www.xilinx.com/support/packagefiles/z7packages/xc7z010clg400pkg.txt
 
 The second step is the extension board schematic investigation. The buttons are located nearby H4 connector. Each button is connected by pull-up resistor to the corresponding GPIO in the SoC banks.
 <p align="center">
-   <img src ="./pics/lab 2/constraints/4ExtensionBoardConnectors.jpg"  width="30%" height="80%"/>
+   <img src ="./pics/lab 2/constraints/4ExtensionBoardConnectors.jpg"  width="100%" height="100%"/>
 </p>
 <p align = "center">
 <i>Extension board buttons schematic</i>
@@ -268,7 +269,7 @@ After modification of XDC it's necessary to rerun the **Synthesis** again.
 4.	Set project title to **leds_and_buttons_sys**
 5.	Add new platform from XSA. Select the corresponding XSA for the current lab.
 <p align="center">
-   <img src ="./pics/lab 2/vitis/1AddNewPlatformFromXSA.jpg"  width="30%" height="80%"/>
+   <img src ="./pics/lab 2/vitis/1AddNewPlatformFromXSA.jpg"  width="80%" height="80%"/>
 </p>
 <p align = "center">
 <i>New platform from XSA</i>
@@ -279,7 +280,7 @@ After modification of XDC it's necessary to rerun the **Synthesis** again.
 6.	Name the project **leds_and_buttons_app**, select Use existing board support package, select  leds_and_buttons_sys and click Next
 
     <p align="center">
-    <img src ="./pics/lab 2/vitis/2SelectExistingXSA.jpg "  width="60%" height="80%"/>
+    <img src ="./pics/lab 2/vitis/2SelectExistingXSA.jpg "  width="80%" height="80%"/>
     </p>
     <p align = "center">
     <i>Select existing XSA project</i>
