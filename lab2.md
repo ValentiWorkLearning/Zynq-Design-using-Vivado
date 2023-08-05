@@ -88,7 +88,7 @@ Notice that the peripheral can be configured for two channels, but, since we wan
 19.	Double click on the IP block, select the _btns GPIO interface_. Open IP Configuration and set GPIO Width to *4*
 
 <p align="center">
-    <img src ="./pics/lab 2/3_2_gpio_width_change.JPG "  width="60%" height="80%"/>
+    <img src ="./pics/lab 2/3_2_gpio_width_change.jpg "  width="60%" height="80%"/>
 </p>
 <p align = "center">
 <i>Adjust gpio width</i>
@@ -144,7 +144,7 @@ At this point connection automation could be run, or the block could be connecte
     </p>
 
 <p align="center">
-    <img src ="./pics/lab 2/5ChangeExternalPinsName.JPG "  width="70%" height="80%"/>
+    <img src ="./pics/lab 2/5ChangeExternalPinsName.jpg "  width="70%" height="80%"/>
 </p>
 <p align = "center">
 <i>Change external pin title</i>
