@@ -157,7 +157,7 @@ Note:  Since we do not have any hardware in Programmable Logic (PL) there is no 
 1.	In SDK, select **File > New > Platform Project**
 
 <p align="center">
-    <img src ="./pics/lab 1/vitis/1NewApplicationProject.JPG" width="40%" height="80%"/>
+    <img src ="./pics/lab 1/vitis/1NewApplicationProject.jpg" width="40%" height="80%"/>
     </p>
     <p align = "center">
     <i> Vitis IDE New application project window </i>
