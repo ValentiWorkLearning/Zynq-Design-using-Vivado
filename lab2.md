@@ -54,7 +54,7 @@ This will create the lab2 directory and save the project and associated director
 for **GPIO IP Interface**.
 
    <p align="center">
-   <img src ="./pics/lab 2/3_1Leds2bits.JPG "  width="50%" height="80%"/>
+   <img src ="./pics/lab 2/3_1Leds2bits.jpg "  width="50%" height="80%"/>
    </p>
    <p align = "center">
    <i>Change gpio configuration for the board</i>
@@ -63,7 +63,7 @@ for **GPIO IP Interface**.
 13.	Next, click the IP configuration tab, and notice the width has already been set to match the switches on the *Zedboard* (8), *Zybo* (4) , *PYNQ-Z2* (2), *EBAZ4205* (2) 
 
    <p align="center">
-   <img src ="./pics/lab 2/3_2_gpio_width_change.JPG "  width="50%" height="80%"/>
+   <img src ="./pics/lab 2/3_2_gpio_width_change.jpg "  width="50%" height="80%"/>
    </p>
    <p align = "center">
    <i>Automatic gpio adjust</i>
@@ -137,7 +137,7 @@ At this point connection automation could be run, or the block could be connecte
 
 22_1.	Make GPIO pins for buttons External and change their title. It's necessary for the proper HW connection to the extension board. 
     <p align="center">
-    <img src ="./pics/lab 2/5MakeButtonsExternal.JPG "  width="70%" height="80%"/>
+    <img src ="./pics/lab 2/5MakeButtonsExternal.jpg "  width="70%" height="80%"/>
     </p>
     <p align = "center">
     <i>Make pin external</i>
