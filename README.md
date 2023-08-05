@@ -32,7 +32,7 @@ In the instructions for the labs;
 ---
 **NOTE**
 
-Board support for the PYNQ-Z1 and PYNQ-Z2 are not included in Vivado by default. The relevant files need to be extracted and saved to:
+Board support for the PYNQ-Z1, PYNQ-Z2, EBAZ4205 are not included in Vivado by default. The relevant files need to be extracted and saved to:
 
  {Vivado installation}\data\boards\board_files\
 
@@ -41,6 +41,9 @@ These files can be downloaded from
 PYNQ-Z1:[/board_files](https://www.xilinx.com/support/documentation/university/vivado/workshops/vivado-adv-embedded-design-zynq/materials/2018x/PYNQZ1/pynq-z1.zip). 
 
 PYNQ-Z2:[/board_files](https://www.xilinx.com/support/documentation/university/vivado/workshops/vivado-adv-embedded-design-zynq/materials/2018x/PYNQZ2/pynq-z2.zip).
+
+
+EBAZ4205:[/board_files](https://github.com/XyleMora/EBAZ4205/tree/main/Documents/Board%20files).
 
 ---
 
@@ -51,6 +54,9 @@ PYNQ-Z2:[/board_files](https://www.xilinx.com/support/documentation/university/v
 **Zybo**:  Make sure that the JP7 is set to select USB power, and JP5 is set to JTAG. Make sure that a micro-USB cable is connected to the JTAG PROG connector (next to the power supply connector). 
 
 **ZedBoard**:  Make sure that two micro-usb cables are used between the PC and the PROG and the UART connectors of the board and that the board is placed in the JTAG mode (MIO6-MIO2 jumpers are in the Dn position). 
+
+
+**EBAZ4205**: Make sure that the extension board is connected and PSU/TypeC connectors setup is valid. The boards have been modified for supporting JTAG/SDCard boot by default.
 
 ## Labs Overview:
 

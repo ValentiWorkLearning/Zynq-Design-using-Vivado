@@ -12,7 +12,7 @@ After completing this lab, you will be able to:
 ## Steps
 ### Create a Vivado Project
 
-1.	Open Vivado by selecting **Start > All Programs > Xilinx Design Tools > Vivado 2018.1 > Vivado 2018.1**
+1.	Open Vivado by selecting **Start > All Programs > Xilinx Design Tools > Vivado 2022.2 > Vivado 2022.2**
 1.	Click **Create New Project** to start the wizard. You will see the Create a New Vivado Project dialog box. Click Next.
 1.	Click the Browse button of the Project Location field of the New Project and browse to **{labs}**, and click Select.
 1.	Enter **lab1** in the Project Name field.  Make sure that the Create Project Subdirectory box is checked.  Click Next.
@@ -128,16 +128,16 @@ After completing this lab, you will be able to:
 
   <!--Generate IP Integrator Outputs, the top-level HDL, and start SDK by exporting the hardware.
      -->  
-1.	In the sources panel, right-click on **system.bd**, and select **Generate Output Products…** and click Generate to generate the Implementation, Simulation and Synthesis files for the design (You can also click on **Generate Block Design** in the Flow Navigator pane to do the same)
+1.	In the sources panel, right-click on **design_1.bd**, and select **Generate Output Products…** and click Generate to generate the Implementation, Simulation and Synthesis files for the design (You can also click on **Generate Block Design** in the Flow Navigator pane to do the same)
     <p align="center">
     <img src ="./pics/lab 1/8OP.jpg" width="40%" height="80%"/>
     </p>
     <p align = "center">
     <i> Generating output products </i>
     </p>  
-1.	Right-click again on system.bd, and select Create **HDL Wrapper…** to generate the top-level VHDL model. Leave the Let Vivado manager wrapper and auto-update option selected, and click OK
+1.	Right-click again on design_1.bd, and select Create **HDL Wrapper…** to generate the top-level VHDL model. Leave the Let Vivado manager wrapper and auto-update option selected, and click OK
 
-    The system_wrapper.vhd file will be created and added to the project.  Double-click on the file to see the content in the Auxiliary pane.
+    The design_1_wrapper.v file will be created and added to the project.  Double-click on the file to see the content in the Auxiliary pane.
     <p align="center">
     <img src ="./pics/lab 1/9wrap.JPG" width="40%" height="80%"/>
     </p>
@@ -147,34 +147,83 @@ After completing this lab, you will be able to:
 1.	Notice that the VHDL file is already Set As the Top module in the design, indicated by the icon  
 1.	Select **File > Export > Export hardware** and click OK. (Save the project if prompted)
 Note:  Since we do not have any hardware in Programmable Logic (PL) there is no bitstream to generate, hence the Include bitstream option is not necessary at this time.
-1.	Select **File > Launch SDK** leaving the default settings, and click OK
+1.	Select **Tools > Launch Vitis IDE** leaving the default settings, and click OK
 
-    SDK should now be open. If only the Welcome panel is visible, close or minimize this panel to view the Project Explorer and Preview panel. A Hardware platform project should have been automatically created, and the system_wrapper_hw_platform_0 folder should exist in the Project Explorer panel.
-
-    The system.hdf file **(Hardware Description File)** for the Hardware platform should open in the preview pane. Double click system.hdf to open it if it is not.
-
-    Basic information about the hardware configuration of the project can be found in the .hdf file, along with the Address maps for the PS systems, and driver information. The .hdf file is used in the software environment to determine the peripherals available in the system, and their location in the address map.
+    SDK should now be open. If only the Welcome panel is visible, close or minimize this panel to view the Project Explorer and Preview panel.
  
 ### Generate Memory TestApp in SDK
 
 1.	Generate memory test application using one of the standard projects template.
-1.	In SDK, select **File > New > Application Project**
-1.	Name the project **mem_test**, and in the Board Support Package section, leave Create New selected and leave the default name mem_test_bsp and click Next. Then click on Next
-   <!--          THIS MAYBE REQUIRED. I NEEDED TO EXUECTE THIS FOR ONE RUN WHEN I       CHANGED FOLDERS BUT DIDN'T NEED FOR THE OTHER RUNS I PERFORMED
-   ( If you do not see the shown Hardware Platform: Click on **New..>Browse..**, under Target Hardware Specification. You'll find **system_wrapper.hdf** file in **{labs} > lab1 > lab1.sdk** ).
-    <p align="center">
-    <img src ="./pics/lab 1/aNewSDK.jpg" width="35%" height="80%"/>
+1.	In SDK, select **File > New > Platform Project**
+
+<p align="center">
+    <img src ="./pics/lab 1/vitis/1NewApplicationProject.JPG" width="40%" height="80%"/>
     </p>
     <p align = "center">
-    <i> SDK New Project window </i>
+    <i> Vitis IDE New application project window </i>
+</p>
+
+1.	Create a new platform from hardware(XSA). For this, click to  **Browse** and select the corresponding XSA file which was generated from the **Export Hardware** step. Set platform name to **lab1_zynq_wrapper**
+
+<p align="center">
+    <img src ="./pics/lab 1/vitis/2CreateNewHardwarePlatformFromXsa.JPG" width="40%" height="80%"/>
     </p>
-    -->
+    <p align = "center">
+    <i> Create new hardware platform from XSA window </i>
+</p>
+
+<p align="center">
+    <img src ="./pics/lab 1/vitis/3SelectCorresponingXSA.JPG" width="40%" height="80%"/>
+    </p>
+    <p align = "center">
+    <i> Select corresponding XSA file </i>
+</p>
+
+
+1.	In SDK, select **File > New > Application Project**
+<p align="center">
+    <img src ="./pics/lab 1/vitis/4CreateApplicationProject.JPG" width="40%" height="80%"/>
+    </p>
+    <p align = "center">
+    <i> Create new Application Project </i>
+</p>
+
+1.	Select the corresponding platform for the system
+<p align="center">
+    <img src ="./pics/lab 1/vitis/5SelectTheProperHw.JPG" width="40%" height="80%"/>
+    </p>
+    <p align = "center">
+    <i>Select the corresponding platform </i>
+</p>
+
+1.	Set project name to **mem_test_app**
+<p align="center">
+    <img src ="./pics/lab 1/vitis/6SelectTheProperProjectName.JPG" width="40%" height="80%"/>
+    </p>
+    <p align = "center">
+    <i>Set project name to mem_test_app </i>
+</p>
+
+1.	Leave domain name as is
+<p align="center">
+    <img src ="./pics/lab 1/vitis/7LeaveDomainAsIs.JPG" width="40%" height="80%"/>
+    </p>
+    <p align = "center">
+    <i>Domain name settings </i>
+</p>
+
 1.	Select **Memory Tests** from the Available Templates window, and click Finish.
+<p align="center">
+    <img src ="./pics/lab 1/vitis/8SelectMemoryTests.JPG" width="40%" height="80%"/>
+    </p>
+    <p align = "center">
+    <i> Select Memory Tests </i>
+</p>
 
 
-    The mem_test project and the board support project mem_test_bsp will be created and will be visible in the Project Explorer window of SDK, and the two projects will be automatically built.
+    The mem_test project and the board support project mem_test_bsp will be created and will be visible in the Project Explorer window of SDK. The projects build should be triggered manually by clicking Ctrl+B.
 
-1.	Expand folders in the Project Explorer view on the left, and observe that there are three projects – system_wrapper_hw_platform_0, mem_test_bsp, and mem_test.  The **mem_test** project is the application that we will use to verify the functionality of the design.  The **hw_platform** includes the ps7_init function which initializes the PS as part of the first stage bootloader, and **mem_test_bsp** is the board support package. The Explorer view should look something like this:
+1.	Expand folders in the Project Explorer view on the left, and observe that there are two projects – mem_test platform and mem_test_app.  The **mem_test_app** project is the application that we will use to verify the functionality of the design.  The **hw_platform** includes the ps7_init function which initializes the PS as part of the first stage bootloader, and **mem_test_bsp** is the board support package. The Explorer view should look something like this:
     <p align="center">
     <img src ="./pics/lab 1/aExplorer.jpg" width="35%" height="80%"/>
     </p>
@@ -186,15 +235,14 @@ Note:  Since we do not have any hardware in Programmable Logic (PL) there is no 
 ### Test in Hardware
 
 1.	Setup the hardware as shown in README.md
-1.	Select the   tab.  If it is not visible then select Window > Show view > Other...
-1.  Select Terminal>Terminal and click OK
+1.	Select the Vitis Serial Terminal tab
     <p align="center">
     <img src ="./pics/lab 1/bTerminalwind.JPG" width="35%" height="80%"/>
     </p>
     <p align = "center">
     <i> Finding Terminal window</i>
     </p>  
-1.	Click on the **Connect** button (shown below in a violet box) and if required, select appropriate COM port (depends on your computer), and configure it with the parameters as shown in the next figure.
+1.	Click on the green **+** button and if required, select appropriate COM port (depends on your computer), and configure it with the parameters as shown in the next figure.
     <p align="center">
     <img src ="./pics/lab 1/cConnect.JPG" width="35%" height="80%"/>
     </p>
