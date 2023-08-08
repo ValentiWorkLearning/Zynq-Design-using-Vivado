@@ -292,6 +292,53 @@ This will create a new Application project using the created board support packa
 11. Copy the content of *lab2.c* from sources/lab2/lab2.c
 12. Build the project
 
+
+
+## Possible issues
+It's necessary to verify, that the Vivado correctly updated the top-level HDL wrapper. It was noticed, that sometimes the added external peripheral doesn't trigger to HDL top level reneration. If the design doesn't work, carefully check the following points:
+1. Select **Open Implemented Design** under **Implementation**. Select I/O planning view at the top-right dropdown menu:
+
+
+<p align="center">
+    <img src ="./pics/lab 2/vitis/3VerifyIOPlanner.jpg "  width="80%" height="80%"/>
+</p>
+    <p align = "center">
+    <i>Verify IO planner ports</i>
+</p>
+
+If the external GPIO ports haven't been assigned, it can be fixed by re-generating of the HDL wrapper for the design. For this, remove design_1/2_wrapper from project. Click on the design_1 again, select **Create HDL wrapper**
+
+<p align="center">
+    <img src ="./pics/lab 2/vitis/4RenerateDesign.jpg "  width="80%" height="80%"/>
+</p>
+<p align = "center">
+   <i>Remove generated HDL wrapper</i>
+</p>
+
+<p align="center">
+    <img src ="./pics/lab 2/vitis/5CreateHDLwrapper.jpg "  width="80%" height="80%"/>
+</p>
+<p align = "center">
+   <i>Create new HDL wrapper</i>
+</p>
+
+Also. It's necessary to check, that in the top-level HDL the generated names of external pins match with the XDC constraints.
+For checking this, open design_1/2_wrapper and created XDC constraints file. Compare port names with the labels with the `get_ports( portname[array_index])`, they must match.
+
+<p align="center">
+    <img src ="./pics/lab 2/vitis/6XDC.jpg "  width="80%" height="80%"/>
+</p>
+<p align = "center">
+   <i>XDC constraints file</i>
+</p>
+
+<p align="center">
+    <img src ="./pics/lab 2/vitis/7DesignWrapper.jpg "  width="80%" height="80%"/>
+</p>
+<p align = "center">
+   <i>HDL design wrapper</i>
+</p>
+
 ### Test in Hardware
 
 1.	Make sure that micro-USB cable(s) is(are) connected between the board and the PC. Turn ON the power of the board.
@@ -303,7 +350,7 @@ This will create a new Application project using the created board support packa
 4.	You should see the something similar to the  following output on Terminal console
 
     <p align="center">
-    <img src ="./pics/lab 2/aop.jpg"  width="30%" height="80%"/>
+    <img src ="./pics/lab 2/aop.jpg"  width="100%" height="100%"/>
     </p>
     <p align = "center">
     <i> SDK Terminal output </i>

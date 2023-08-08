@@ -1,7 +1,7 @@
 //Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-//Date        : Sun Aug  6 01:36:18 2023
+//Date        : Tue Aug  8 02:55:49 2023
 //Host        : DESKTOP-696ITR2 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1_wrapper.bd
 //Design      : design_1_wrapper
@@ -31,8 +31,8 @@ module design_1_wrapper
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    buttons_tri_io,
-    leds_2bits_tri_o);
+    buttons_ext_tri_io,
+    leds_ext_tri_o);
   inout [14:0]DDR_addr;
   inout [2:0]DDR_ba;
   inout DDR_cas_n;
@@ -54,8 +54,8 @@ module design_1_wrapper
   inout FIXED_IO_ps_clk;
   inout FIXED_IO_ps_porb;
   inout FIXED_IO_ps_srstb;
-  inout [3:0]buttons_tri_io;
-  output [1:0]leds_2bits_tri_o;
+  inout [3:0]buttons_ext_tri_io;
+  output [1:0]leds_ext_tri_o;
 
   wire [14:0]DDR_addr;
   wire [2:0]DDR_ba;
@@ -78,44 +78,44 @@ module design_1_wrapper
   wire FIXED_IO_ps_clk;
   wire FIXED_IO_ps_porb;
   wire FIXED_IO_ps_srstb;
-  wire [0:0]buttons_tri_i_0;
-  wire [1:1]buttons_tri_i_1;
-  wire [2:2]buttons_tri_i_2;
-  wire [3:3]buttons_tri_i_3;
-  wire [0:0]buttons_tri_io_0;
-  wire [1:1]buttons_tri_io_1;
-  wire [2:2]buttons_tri_io_2;
-  wire [3:3]buttons_tri_io_3;
-  wire [0:0]buttons_tri_o_0;
-  wire [1:1]buttons_tri_o_1;
-  wire [2:2]buttons_tri_o_2;
-  wire [3:3]buttons_tri_o_3;
-  wire [0:0]buttons_tri_t_0;
-  wire [1:1]buttons_tri_t_1;
-  wire [2:2]buttons_tri_t_2;
-  wire [3:3]buttons_tri_t_3;
-  wire [1:0]leds_2bits_tri_o;
+  wire [0:0]buttons_ext_tri_i_0;
+  wire [1:1]buttons_ext_tri_i_1;
+  wire [2:2]buttons_ext_tri_i_2;
+  wire [3:3]buttons_ext_tri_i_3;
+  wire [0:0]buttons_ext_tri_io_0;
+  wire [1:1]buttons_ext_tri_io_1;
+  wire [2:2]buttons_ext_tri_io_2;
+  wire [3:3]buttons_ext_tri_io_3;
+  wire [0:0]buttons_ext_tri_o_0;
+  wire [1:1]buttons_ext_tri_o_1;
+  wire [2:2]buttons_ext_tri_o_2;
+  wire [3:3]buttons_ext_tri_o_3;
+  wire [0:0]buttons_ext_tri_t_0;
+  wire [1:1]buttons_ext_tri_t_1;
+  wire [2:2]buttons_ext_tri_t_2;
+  wire [3:3]buttons_ext_tri_t_3;
+  wire [1:0]leds_ext_tri_o;
 
-  IOBUF buttons_tri_iobuf_0
-       (.I(buttons_tri_o_0),
-        .IO(buttons_tri_io[0]),
-        .O(buttons_tri_i_0),
-        .T(buttons_tri_t_0));
-  IOBUF buttons_tri_iobuf_1
-       (.I(buttons_tri_o_1),
-        .IO(buttons_tri_io[1]),
-        .O(buttons_tri_i_1),
-        .T(buttons_tri_t_1));
-  IOBUF buttons_tri_iobuf_2
-       (.I(buttons_tri_o_2),
-        .IO(buttons_tri_io[2]),
-        .O(buttons_tri_i_2),
-        .T(buttons_tri_t_2));
-  IOBUF buttons_tri_iobuf_3
-       (.I(buttons_tri_o_3),
-        .IO(buttons_tri_io[3]),
-        .O(buttons_tri_i_3),
-        .T(buttons_tri_t_3));
+  IOBUF buttons_ext_tri_iobuf_0
+       (.I(buttons_ext_tri_o_0),
+        .IO(buttons_ext_tri_io[0]),
+        .O(buttons_ext_tri_i_0),
+        .T(buttons_ext_tri_t_0));
+  IOBUF buttons_ext_tri_iobuf_1
+       (.I(buttons_ext_tri_o_1),
+        .IO(buttons_ext_tri_io[1]),
+        .O(buttons_ext_tri_i_1),
+        .T(buttons_ext_tri_t_1));
+  IOBUF buttons_ext_tri_iobuf_2
+       (.I(buttons_ext_tri_o_2),
+        .IO(buttons_ext_tri_io[2]),
+        .O(buttons_ext_tri_i_2),
+        .T(buttons_ext_tri_t_2));
+  IOBUF buttons_ext_tri_iobuf_3
+       (.I(buttons_ext_tri_o_3),
+        .IO(buttons_ext_tri_io[3]),
+        .O(buttons_ext_tri_i_3),
+        .T(buttons_ext_tri_t_3));
   design_1 design_1_i
        (.DDR_addr(DDR_addr),
         .DDR_ba(DDR_ba),
@@ -138,8 +138,8 @@ module design_1_wrapper
         .FIXED_IO_ps_clk(FIXED_IO_ps_clk),
         .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
         .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb),
-        .buttons_tri_i({buttons_tri_i_3,buttons_tri_i_2,buttons_tri_i_1,buttons_tri_i_0}),
-        .buttons_tri_o({buttons_tri_o_3,buttons_tri_o_2,buttons_tri_o_1,buttons_tri_o_0}),
-        .buttons_tri_t({buttons_tri_t_3,buttons_tri_t_2,buttons_tri_t_1,buttons_tri_t_0}),
-        .leds_2bits_tri_o(leds_2bits_tri_o));
+        .buttons_ext_tri_i({buttons_ext_tri_i_3,buttons_ext_tri_i_2,buttons_ext_tri_i_1,buttons_ext_tri_i_0}),
+        .buttons_ext_tri_o({buttons_ext_tri_o_3,buttons_ext_tri_o_2,buttons_ext_tri_o_1,buttons_ext_tri_o_0}),
+        .buttons_ext_tri_t({buttons_ext_tri_t_3,buttons_ext_tri_t_2,buttons_ext_tri_t_1,buttons_ext_tri_t_0}),
+        .leds_ext_tri_o(leds_ext_tri_o));
 endmodule

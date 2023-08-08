@@ -1,7 +1,7 @@
 //Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
-//Date        : Sun Aug  6 01:36:18 2023
+//Date        : Tue Aug  8 02:55:49 2023
 //Host        : DESKTOP-696ITR2 running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -32,10 +32,10 @@ module design_1
     FIXED_IO_ps_clk,
     FIXED_IO_ps_porb,
     FIXED_IO_ps_srstb,
-    buttons_tri_i,
-    buttons_tri_o,
-    buttons_tri_t,
-    leds_2bits_tri_o);
+    buttons_ext_tri_i,
+    buttons_ext_tri_o,
+    buttons_ext_tri_t,
+    leds_ext_tri_o);
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR ADDR" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250" *) inout [14:0]DDR_addr;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR BA" *) inout [2:0]DDR_ba;
   (* X_INTERFACE_INFO = "xilinx.com:interface:ddrx:1.0 DDR CAS_N" *) inout DDR_cas_n;
@@ -57,10 +57,10 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK" *) inout FIXED_IO_ps_clk;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *) inout FIXED_IO_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 buttons " *) input [3:0]buttons_tri_i;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 buttons " *) output [3:0]buttons_tri_o;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 buttons " *) output [3:0]buttons_tri_t;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 leds_2bits TRI_O" *) output [1:0]leds_2bits_tri_o;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 buttons_ext " *) input [3:0]buttons_ext_tri_i;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 buttons_ext " *) output [3:0]buttons_ext_tri_o;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 buttons_ext " *) output [3:0]buttons_ext_tri_t;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:gpio:1.0 leds_ext " *) output [1:0]leds_ext_tri_o;
 
   wire [3:0]buttons_adapter_GPIO_TRI_I;
   wire [3:0]buttons_adapter_GPIO_TRI_O;
@@ -163,10 +163,10 @@ module design_1
   wire ps7_0_axi_periph_M01_AXI_WVALID;
   wire [0:0]rst_ps7_0_100M_peripheral_aresetn;
 
-  assign buttons_adapter_GPIO_TRI_I = buttons_tri_i[3:0];
-  assign buttons_tri_o[3:0] = buttons_adapter_GPIO_TRI_O;
-  assign buttons_tri_t[3:0] = buttons_adapter_GPIO_TRI_T;
-  assign leds_2bits_tri_o[1:0] = onboard_leds_GPIO_TRI_O;
+  assign buttons_adapter_GPIO_TRI_I = buttons_ext_tri_i[3:0];
+  assign buttons_ext_tri_o[3:0] = buttons_adapter_GPIO_TRI_O;
+  assign buttons_ext_tri_t[3:0] = buttons_adapter_GPIO_TRI_T;
+  assign leds_ext_tri_o[1:0] = onboard_leds_GPIO_TRI_O;
   design_1_axi_gpio_0_2 buttons_adapter
        (.gpio_io_i(buttons_adapter_GPIO_TRI_I),
         .gpio_io_o(buttons_adapter_GPIO_TRI_O),

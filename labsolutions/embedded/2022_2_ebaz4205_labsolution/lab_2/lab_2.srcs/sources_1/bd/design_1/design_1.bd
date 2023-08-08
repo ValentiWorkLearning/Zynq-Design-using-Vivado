@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x9976A3CCBEF82770",
+      "boundary_crc": "0xB67A58ED400068C4",
       "device": "xc7z010clg400-1",
       "gen_directory": "../../../../lab_2.gen/sources_1/bd/design_1",
       "name": "design_1",
@@ -193,38 +193,38 @@
           }
         }
       },
-      "leds_2bits": {
+      "leds_ext": {
         "mode": "Master",
         "vlnv_bus_definition": "xilinx.com:interface:gpio:1.0",
         "vlnv": "xilinx.com:interface:gpio_rtl:1.0",
         "port_maps": {
           "TRI_O": {
-            "physical_name": "leds_2bits_tri_o",
+            "physical_name": "leds_ext_tri_o",
             "direction": "O",
             "left": "1",
             "right": "0"
           }
         }
       },
-      "buttons": {
+      "buttons_ext": {
         "mode": "Master",
         "vlnv_bus_definition": "xilinx.com:interface:gpio:1.0",
         "vlnv": "xilinx.com:interface:gpio_rtl:1.0",
         "port_maps": {
           "TRI_I": {
-            "physical_name": "buttons_tri_i",
+            "physical_name": "buttons_ext_tri_i",
             "direction": "I",
             "left": "3",
             "right": "0"
           },
           "TRI_O": {
-            "physical_name": "buttons_tri_o",
+            "physical_name": "buttons_ext_tri_o",
             "direction": "O",
             "left": "3",
             "right": "0"
           },
           "TRI_T": {
-            "physical_name": "buttons_tri_t",
+            "physical_name": "buttons_ext_tri_t",
             "direction": "O",
             "left": "3",
             "right": "0"
@@ -255,7 +255,7 @@
             "value": "10.000000"
           },
           "PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ": {
-            "value": "100.000000"
+            "value": "50.000000"
           },
           "PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ": {
             "value": "10.000000"
@@ -309,7 +309,7 @@
             "value": "111.111115"
           },
           "PCW_CLK0_FREQ": {
-            "value": "100000000"
+            "value": "50000000"
           },
           "PCW_CLK1_FREQ": {
             "value": "10000000"
@@ -357,7 +357,7 @@
             "value": "FALSE"
           },
           "PCW_FPGA0_PERIPHERAL_FREQMHZ": {
-            "value": "100"
+            "value": "50"
           },
           "PCW_FPGA_FCLK0_ENABLE": {
             "value": "1"
@@ -530,9 +530,6 @@
           },
           "PCW_SD0_PERIPHERAL_ENABLE": {
             "value": "0"
-          },
-          "PCW_SDIO_PERIPHERAL_FREQMHZ": {
-            "value": "100"
           },
           "PCW_SDIO_PERIPHERAL_VALID": {
             "value": "0"
@@ -1140,13 +1137,13 @@
     "interface_nets": {
       "buttons_adapter_GPIO": {
         "interface_ports": [
-          "buttons",
+          "buttons_ext",
           "buttons_adapter/GPIO"
         ]
       },
       "onboard_leds_GPIO": {
         "interface_ports": [
-          "leds_2bits",
+          "leds_ext",
           "onboard_leds/GPIO"
         ]
       },

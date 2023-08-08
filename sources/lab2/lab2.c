@@ -51,6 +51,11 @@
 #include "xgpio.h"
 #include <unistd.h>
 
+void sleep_ms(uint32_t ms)
+{
+	usleep(ms*1000);
+}
+
 int main()
 {
     init_platform();
@@ -65,18 +70,18 @@ int main()
 	XGpio_SetDataDirection(&buttons, 1, 0xFFFFFFFF);
 
 	XGpio_Initialize(&leds, XPAR_ONBOARD_LEDS_DEVICE_ID);
-	XGpio_SetDataDirection(&leds, 1, 0x0000000);
+	XGpio_SetDataDirection(&leds, 1, 0x00);
 
 	while (1)
 	{
-	  psb_check = XGpio_DiscreteRead(&buttons, 1);
-	  xil_printf("Push Buttons Status %x\r\n", psb_check);
-	  sleep(1);
+    	sleep_ms(500);
+    	XGpio_DiscreteWrite(&leds, 1, 0x03);
+    	sleep_ms(500);
+    	XGpio_DiscreteClear(&leds, 1, 0x03);
 
-	  XGpio_DiscreteWrite(&leds,0,0x03);
-	  sleep(1);
-	  XGpio_DiscreteWrite(&leds,0,0x00);
-	  sleep(1);
+    	psb_check = XGpio_DiscreteRead(&buttons, 1);
+	  	xil_printf("Push Buttons Status %x\r\n", psb_check);
+
 	}
     return 0;
 }
