@@ -4,7 +4,7 @@
 /////////////////////////////////////////////////////////////////
 
 module lab3_user_logic # (
-	parameter LED_WIDTH = 8
+	parameter LED_WIDTH = 3
 	)
 	(
     input S_AXI_ACLK,

@@ -22,7 +22,7 @@ This will create the lab4 directory and save the project and associated director
 
 1.	Click **File > Export > Export Hardware**.
 2.	Click on the checkbox of **Include the bitstream** and then click **Yes** to overwrite.
-3.	Select **File > Launch SDK** and click OK.
+3.	Select **Tools > Launch Vitis IDE** and click OK.
 1.	To tidy up the workspace and save unnecessary building of a project that is not being used, right click on the _TestApp_, _standalonebsp0_, and the *system_wrapper_hw_platform_1* projects from the previous lab, and click Close Project, as these projects will not be used in this lab. They can be reopened later if needed.
 2.	Select **File > New > Application Project**.
 3.	Enter lab4 as the Project Name, and for Board Support Package, choose Create New **lab4_bsp** (should be the only option).
@@ -79,54 +79,39 @@ This will create the lab4 directory and save the project and associated director
 
      The xparameters.h file contains the address map for peripherals in the system. This file is generated from the hardware platform description from Vivado. Find the following #define used to identify the switches peripheral:
 ```C
-#define XPAR_SWITCHES_DEVICE_ID 1
+#define XPAR_BUTTONS_ADAPTER_DEVICE_ID 1
 ```
 > Note the number might be different
 
-  Notice the other #define XPAR_SWITCHES* statements in this section for the switches peripheral, and in particular the address of the peripheral defined by: XPAR_SWITCHES_BASEADDR
+  Notice the other #define XPAR_BUTTONS_ADAPTER* statements in this section for the switches peripheral, and in particular the address of the peripheral defined by: XPAR_BUTTONS_ADAPTER_BASEADDR
 
 15.	Modify line 14 of lab4.c to use this macro (#define) in the XGpio_Initialize function.
 
 ```C
-1 #include "xparameters.h"
-2 #include "xgpio.h"
-3
-4 //====================================================
-5
-6 int main (void)
-7 {
-8
-9    XGpio dip, push;
-10   int i, psb_check, dip_check;
-11
-12   xil_printf("-- Start of the Program --\r\n");
-13
-14   XGpio_Initialize(&dip, XPAR_DIP_DEVICE_ID); // Modify this
-15   XGpio_SetDataDirection(&dip, 1, 0xffffffff);
-16
-17   XGpio_Initialize(&push, XPAR_PUSH_DEVICE_ID); // Modify this
-18   XGpio_SetDataDirection(&push, 1, 0xffffffff);
-19
-20
-21   while (1)
-22   {
-23	  psb_check = XGpio_DiscreteRead(&push, 1);
-24	  xil_printf("Push Buttons Status %x\r\n", psb_check);
-25	  dip_check = XGpio_DiscreteRead(&dip, 1);
-26	  xil_printf("DIP Switch Status %x\r\n", dip_check);
-27	  
-28	  // output dip switches value on LED_ip device
-29	  
-30	  for (i=0; i<9999999; i++);
-31   }
-32 }
+#include "xparameters.h"
+#include "xgpio.h"
+//====================================================
+
+int main (void)
+{
+
+   XGpio push;
+   int psb_check;
+
+   xil_printf("-- Start of the Program --\r\n");
+
+   XGpio_Initialize(&push, XPAR_BUTTONS_ADAPTER_DEVICE_ID); // Modify this
+   XGpio_SetDataDirection(&push, 1, 0xffffffff);
+
+
+   while (1)
+   {
+	  psb_check = XGpio_DiscreteRead(&push, 1);
+	  xil_printf("Push Buttons Status %x\r\n", psb_check);
+   }
+}
 
 ```
-
-16.	Do the same for the **BUTTONS**; find the macro (#define) for the **BUTTONS** peripheral in **xparameters.h**, and modify line 17 in lab4.c, and save the file.
-
-    The project will be rebuilt. If there are any errors, check and fix your code. Your C code will eventually read the value of the switches and output it to the led_ip.
-
 1.	Select **lab4_bsp** in the project view, right-click, and select Board Support Package Settings.
 2.	Select drivers on the left (under Overview)
 3.	If the led_ip driver has not already been selected, select Generic under the Driver column for led_ip to access the dropdown menu. From the dropdown menu, select led_ip, and click OK.
@@ -174,7 +159,7 @@ LED_IP_mReadReg( … )
   ```
   For this driver, you can see the macros are aliases to the lower level functions *Xil_Out32( )* and *Xil_Out32( )*. The macros in this file make up the higher level API of the led_ip driver. If you are writing your own driver for your own IP, you will need to use low level functions like these to read and write from your IP as required. The low level hardware access functions are wrapped in your driver making it easier to use your IP in an Application project.
 
-3.	Modify your C code (see figure below, or you can find modified code in lab4_sol.c from the {sources} folder) to echo the dip switch settings on the LEDs by using the led_ip driver API macros, and save the application.
+3.	Modify your C code (see figure below, or you can find modified code in lab4_sol.c from the {sources} folder) to echo the push button settings on the LEDs by using the led_ip driver API macros, and save the application.
 
 4.	Include the header file:
 
@@ -184,7 +169,7 @@ LED_IP_mReadReg( … )
 
 5.	Include the function to write to the IP (insert before the for loop):
 ```C
-LED_IP_mWriteReg(XPAR_LED_IP_S_AXI_BASEADDR, 0, dip_check);
+LED_IP_mWriteReg(XPAR_LED_IP_S_AXI_BASEADDR, 0, psb_check);
 ```
 
 Remember that the hardware address for a peripheral (e.g. the macro XAR_LED_IP_S_AXI_BASEADDR in the line above) can be found in xparameters.h
@@ -198,15 +183,12 @@ Remember that the hardware address for a peripheral (e.g. the macro XAR_LED_IP_S
 int main (void)
 {
 
-   XGpio dip, push;
-   int i, psb_check, dip_check;
+   XGpio push;
+   int psb_check;
 
    xil_printf("-- Start of the Program --\r\n");
 
-   XGpio_Initialize(&dip, XPAR_SWITCHES_DEVICE_ID); // Modify this
-   XGpio_SetDataDirection(&dip, 1, 0xffffffff);
-
-   XGpio_Initialize(&push, XPAR_BUTTONS_DEVICE_ID); // Modify this
+   XGpio_Initialize(&push, XPAR_BUTTONS_ADAPTER_DEVICE_ID); // Modify this
    XGpio_SetDataDirection(&push, 1, 0xffffffff);
 
 
@@ -214,24 +196,22 @@ int main (void)
    {
 	  psb_check = XGpio_DiscreteRead(&push, 1);
 	  xil_printf("Push Buttons Status %x\r\n", psb_check);
-	  dip_check = XGpio_DiscreteRead(&dip, 1);
-	  xil_printf("DIP Switch Status %x\r\n", dip_check);
 
-	  // output dip switches value on LED_ip device
-	  LED_IP_mWriteReg(XPAR_LED_IP_S_AXI_BASEADDR, 0, dip_check);
+	  // Use LED ip from AXI
+	  LED_IP_mWriteReg(XPAR_LED_IP_S_AXI_BASEADDR,0,psb_check);
 
-	  for (i=0; i<9999999; i++);
    }
 }
+
 ```
 6.	Save the file and the program will be compiled again.
 
 ### Analyze Assembled Object Files
 
 1.	Launch the shell from SDK by selecting **Xilinx Tools > Launch Shell**.
-2.	Change the directory to **lab4\Debug** using the cd command in the shell.
+2.	Change the directory to **lab4_app\Debug** using the cd command in the shell.
 You can determine your directory path and the current directory contents by using the pwd and dir commands.
-3.	Type **arm-none-eabi-objdump –h lab4.elf** at the prompt in the shell window to list various sections of the program, along with the starting address and size of each section
+3.	Type **arm-none-eabi-objdump –h lab4_app.elf** at the prompt in the shell window to list various sections of the program, along with the starting address and size of each section
 You should see results similar to that below:
 
     <p align="center">
@@ -252,16 +232,24 @@ You should see results similar to that below:
 3.	Select lab4 in Project Explorer, right-click and select **Run As > Launch on Hardware (System Debugger)** to download the application, execute ps7_init, and execute lab4.elf
 
     <p align="center">
-    <img src ="./pics/lab 4/5sdkop.JPG" width="30%" height="80%"/>
+    <img src ="./pics/lab 4/5sdkop.JPG" width="80%" height="80%"/>
     </p>
     <p align = "center">
-    <i> DIP switch and Push button settings displayed in SDK terminal </i>
+    <i> Push button settings are displayed in SDK terminal </i>
     </p>
 
-    Note: Setting the DIP switches and push buttons will change the results displayed.
+    Note: Setting the push buttons will change the results displayed.
 
 1.	Right click on lab4 and click Generate Linker Script…
 Note that all four major sections, code, data, stack and heap are to be assigned to BRAM controller.
+     <p align="center">
+     <img src ="./pics/lab 4/vitis_issues/2GenerateLinkerScript.jpg" width="71%" height="80%"/>
+     </p>
+     <p align = "center">
+     <i> Targeting Stack/Heap sections to BRAM </i>
+     </p>
+
+
 2.	In the Basic Tab change the Code and Data sections to **ps7_ddr_0**, leaving the Heap and Stack in section to **axi_bram_ctrl_0_S_AXI_BASEADDR** memory and click **Generate**, and click Yes to overwrite.
 
      <p align="center">
@@ -284,7 +272,7 @@ Note that all four major sections, code, data, stack and heap are to be assigned
     </p>
 
 
-    Flip the DIP switches and verify that the LEDs light according to the switch settings. Verify that you see the results of the DIP switch and Push button settings in SDK Terminal.
+    Puth the buttons and verify that the LEDs light according to the switch settings. Verify that you see the results of the Push button settings in SDK Terminal.
 
 1.	Select lab4 in Project Explorer, right-click and select **Run As > Launch on Hardware (System Debugger)** to download the application, execute ps7_init, and execute lab4.elf
 

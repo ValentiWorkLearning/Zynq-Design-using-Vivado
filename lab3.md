@@ -12,11 +12,18 @@ After completing this lab, you will be able to:
 
 ## Steps
 
+### Open the Project
+
+1. Open the previous project, or the lab1 project from the **{labsolutions}** directory, and save the project as lab3. Open the Block Design.
+1.	Start Vivado, if necessary, and open either the lab1 project (lab1.xpr) you created in the previous lab or from the **{labsolutions}** directory using the Open Project link in the Getting Started page.
+2.	Select **File > Save Project As…** to open the Save Project As dialog box. Enter lab3 as the project name.  Make sure that the Create Project Subdirectory option is checked, the project directory path is **{labs}** and click OK.
+This will create the lab3 directory and save the project and associated directory with lab2 name.
+
 ### Create a Custom IP using the Create and Package IP Wizard
 
-1.	Open Vivado by selecting **Start > All Programs > Xilinx Design Tools > Vivado 2018.1 > Vivado 2018.1**
-2.	Click **Manage IP** and select New IP Location and click Next in the New IP Location window
-3.	Select Verilog as the Target Language, Mixed as the Simulator language, and for IP location, type **{labs}\led_ip** and click Finish (leave other settings as defaults and click OK if prompted to create the directory)
+1.	Open new Vivado instance by selecting **Start > All Programs > Xilinx Design Tools > Vivado 2022.2 > Vivado 2022.2**
+2.	Click **IP > New Location** and select New IP Location and click Next in the New IP Location window
+3.	Select Verilog as the Target Language, Mixed as the Simulator language, and for IP location, type **{labs}\led_ip**. Set part name to XC7Z010CLG400 and click Finish (leave other settings as defaults and click OK if prompted to create the directory)
 
      <p align="center">
      <img src ="./pics/lab 3/1ipst.JPG" width="80%" height="80%"/>
@@ -24,8 +31,6 @@ After completing this lab, you will be able to:
      <p align = "center">
      <i>New IP Location form</i>
      </p>
-
-     A Virtex 7 part is chosen for this project, but later compatibility for other devices will be added to the packaged IP.
 
 ###	Run the Create and Package IP Wizard
 
@@ -56,7 +61,7 @@ After completing this lab, you will be able to:
 2.	Add the line:
 
 ```verilog
-7   parameter integer LED_WIDTH         = 8,
+7   parameter integer LED_WIDTH         = 3,
 ```
 
 3.	Go to line 18 and add the line:
@@ -112,7 +117,7 @@ After completing this lab, you will be able to:
 
 ###	Package the IP
 
-1.	Click on the Package IP – led_ip tab
+1.	Click on the Edit Packaged IP – led_ip tab
 
    <p align="center">
    <img src ="./pics/lab 3/2PackIP.JPG" width="80%" height="80%"/>
@@ -127,7 +132,7 @@ After completing this lab, you will be able to:
 3.	For the purpose of this exercise, uncheck the _AXI Peripheral_ box and check the Basic Elements and click OK.
 4.	Select Compatibility. This shows the different Xilinx FPGA Families that the IP supports. The value is inherited from the device selected for the project.
 5.	Click the Blue Plus then **Add Family Explicitly…** from the menu.
-6.	Select the Zynq family as we will be using this IP on the PYNQ-Z2, Zybo and Zedboard, and click OK. You will get something like this:
+6.	Select the Zynq family as we will be using this IP on the PYNQ-Z2, Zybo, Zedboard and EBAZ4205, and click OK. You will get something like this:
     <p align="center">
     <img src ="./pics/lab 3/3ipfam.JPG" width="50%" height="80%"/>
     </p>
@@ -166,9 +171,7 @@ Notice that the Ports and Interfaces view now shows the user created LED port
 
 ### Modify the Project Settings
 
-1.	Start the Vivado if necessary and open either the lab2 project you created in the previous lab or the lab2 project in the labsolution directory
-2.	Select **File > Save Project As…** to open the Save Project As dialog box. Enter lab3 as the project name.  Make sure that the Create Project Subdirectory option is checked, the project directory path is {labs}\ and click OK.
-This will create the lab3 directory and save the project and associated directory with lab3 name.
+1.	Start the Vivado if necessary and open lab3 project
 3.	Click **Settings** in the Flow Navigator pane.
 4.	Select **IP > Repository** in the left pane of the Project Settings form.
 5.	Click on the Blue Plus button, browse to **{labs}\led_ip** and click Select.
@@ -227,11 +230,15 @@ The design should look similar to the figure below.
 7.	Press **F6** to validate the design one last time.
 
 1.	Click **Add Sources** in the Flow Navigator pane, select **Add or Create Constraints**, and click Next.
-2.	Click the Blue Plus button, and then **Add Files…**, browse to the **{sources}\lab3** folder, select lab3_zed.xdc for the _ZedBoard_, lab3_pynq_z2.xdc for _PYNQ-Z2_ or lab3_Zybo.xdc  for the _Zybo_
+2.	Click the Blue Plus button, and then **Add Files…**, browse to the **{sources}\lab3** folder, select lab3_zed.xdc for the _ZedBoard_, lab3_pynq_z2.xdc for _PYNQ-Z2_ or lab3_Zybo.xdc  for the _Zybo_. For EBAZ4205 selecr lab3_ebaz4205.xdc
 3.	Click **Finish** to add the file.
 4.	Expand Constraints folder in the Sources pane, and double click the **lab3_*.xdc** file entry to see its content. This file contains the pin locations and IO standards for the LEDs on the _Zynq_ board. This information can usually be found in the manufacturer’s datasheet for the board.
 5.	Right click on system.bd and select Generate output products
 6.	Click on **Generate Bitstream** and click Yes if prompted to save the Block Diagram, and click Yes again if prompted to launch **Synthesis** and **Implementation**. Click Cancel when prompted to Open the Implemented Design
+
+
+## WARNING
+Check carefully I/O planning report from Vivado. If the LED_0 instance is missed, carefully refresh the HDL wrapper for the design and rerun Bitstream Generation.
 
 ## Conclusion
 
